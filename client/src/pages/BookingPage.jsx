@@ -4,7 +4,7 @@ import axios from "axios";
 import AddressLink from "../AddressLink";
 import PlaceGallery from "../PlaceGallery";
 import BookingDates from "../BookingDates";
-
+//
 export default function BookingPage() {
   const {id} = useParams();
   const [booking,setBooking] = useState(null);

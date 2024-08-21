@@ -21,8 +21,6 @@ const uploadDirectory = path.join(__dirname, 'uploads');
 const photosMiddleware = multer({
   dest: uploadDirectory,
   fileFilter: (req, file, cb) => {
-    // Validate file types if needed
-    // Example: allow only images
     if (!file.originalname.match(/\.(jpg|jpeg|png|gif)$/)) {
       return cb(new Error('Only image files are allowed!'), false);
     }
@@ -30,7 +28,6 @@ const photosMiddleware = multer({
   }
 });
 
-// Middleware
 app.use(express.json());
 app.use(cookieParser());
 app.use('/uploads', express.static(uploadDirectory));
@@ -46,7 +43,7 @@ mongoose.connect(process.env.MONGO_URL, {
 });
 
 
-// Utility function to get user data from JWT token
+
 function getUserDataFromReq(req) {
   return new Promise((resolve, reject) => {
     jwt.verify(req.cookies.token, jwtSecret, {}, async (err, userData) => {
@@ -64,15 +61,18 @@ app.get('/api/test', (req, res) => {
 });
 
 // User registration endpoint
-// User registration endpoint
+
 app.post('/api/register', async (req, res) => {
   const { name, email, password } = req.body;
+  if (!name || !email || !password) {
+    return res.status(400).json({ error: 'Name, email, and password are required' });
+  }
 
   try {
     const hashedPassword = bcrypt.hashSync(password, bcryptSalt);
     const userDoc = await User.create({ name, email, password: hashedPassword });
 
-    // Optionally, you can log the successful registration
+
     console.log(`User registered successfully: ${userDoc}`);
 
     res.json(userDoc); // Send the user document back as a response
@@ -82,12 +82,12 @@ app.post('/api/register', async (req, res) => {
 
     // Determine the appropriate status code and error message
     let statusCode = 500;
-    let errorMessage = 'Registration failed';
+    let errorMessage = 'Registration Failed';
 
-    if (e.code === 11000) { // Duplicate key error (MongoDB)
+    if (e.code === 11000) { // MongoDB duplicate key error
       statusCode = 400;
       errorMessage = 'Email already registered';
-    } else if (e.name === 'ValidationError') { // Validation error (Mongoose schema validation)
+    } else if (e.name === 'ValidationError') { // Mongoose validation error
       statusCode = 422;
       errorMessage = e.message;
     }
@@ -95,6 +95,7 @@ app.post('/api/register', async (req, res) => {
     res.status(statusCode).json({ error: errorMessage });
   }
 });
+
 
 
 // User login endpoint
@@ -105,9 +106,11 @@ app.post('/api/login', async (req, res) => {
   if (userDoc) {
     const passOk = bcrypt.compareSync(password, userDoc.password);
     if (passOk) {
+      // Sign the JWT token
       jwt.sign({ email: userDoc.email, id: userDoc._id }, jwtSecret, {}, (err, token) => {
         if (err) throw err;
-        res.cookie('token', token).json(userDoc);
+        // Send the token back in the response
+        res.cookie('token', token).json({ token, user: userDoc });
       });
     } else {
       res.status(422).json('Incorrect password');
@@ -116,6 +119,7 @@ app.post('/api/login', async (req, res) => {
     res.status(404).json('User not found');
   }
 });
+
 
 // Profile endpoint
 app.get('/api/profile', async (req, res) => {
@@ -188,14 +192,17 @@ app.get('/api/places/:id', async (req, res) => {
 });
 
 
+// Get all places
 app.get('/api/places', async (req, res) => {
   try {
     const places = await Place.find();
     res.json(places);
   } catch (err) {
-    res.status(500).json({ error: err.message });
+    console.error('Error fetching places:', err.message);
+    res.status(500).json({ error: 'Internal Server Error' }); 
   }
 });
+
 app.post('/api/bookings', async (req, res) => {
   try {
     const { place, user, checkIn, checkOut, name, phone, price } = req.body;

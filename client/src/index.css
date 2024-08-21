@@ -14,7 +14,7 @@ textarea{
 button{
     @apply bg-gray-300;
 }
-button.primary{
-    background-color: #F5385D;
-    @apply bg-primary p-2 w-full text-white rounded-2xl;
+button.primary {
+    background-color: #3B82F6; /* bg-blue-500 */
+    @apply p-2 w-full text-white rounded-2xl;
 }

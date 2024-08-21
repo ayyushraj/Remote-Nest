@@ -18,7 +18,7 @@ export default function PhotosUploader({addedPhotos,onChange}) {
     for (let i = 0; i < files.length; i++) {
       data.append('photos', files[i]);
     }
-    axios.post('/upload', data, {
+    axios.post('/api/upload', data, {
       headers: {'Content-type':'multipart/form-data'}
     }).then(response => {
       const {data:filenames} = response;

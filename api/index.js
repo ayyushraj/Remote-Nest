@@ -33,8 +33,10 @@ app.use(cookieParser());
 app.use('/uploads', express.static(uploadDirectory));
 app.use(cors({
   credentials: true,
-  origin: '*',
+  origin: 'http://127.0.0.1:5173',
 }));
+
+mongoose.set('strictQuery', true);
 
 // MongoDB connection
 mongoose.connect(process.env.MONGO_URL, {

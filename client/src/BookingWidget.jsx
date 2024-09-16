@@ -25,16 +25,47 @@ export default function BookingWidget({place}) {
   }
 
   async function bookThisPlace() {
-    const response = await axios.post('/api/bookings', {
-      checkIn,checkOut,numberOfGuests,name,phone,
-      place:place._id,
-      price:numberOfNights * place.price,
-    });
-    const bookingId = response.data._id;
-    setRedirect(`/account/bookings/${bookingId}`);
+    if (!user) {
+      console.error("User is not logged in.");
+      alert("You are not logged in !");
+      return;
+    }
+    console.log('UserContext:', user);
+
+    try {
+
+      console.log("Sending request to /api/bookings with payload:", {
+        checkIn,
+        checkOut,
+        numberOfGuests,
+        name,
+        phone,
+        place: place._id,
+        price: numberOfNights * place.price,
+        user: user._id // Ensure this field is included
+      });
+
+      const response = await axios.post('/api/bookings', {
+        checkIn,
+        checkOut,
+        numberOfGuests,
+        name,
+        phone,
+        place: place._id,
+        price: numberOfNights * place.price,
+        user: user._id  // Include the user ID here
+      });
+  
+      const bookingId = response.data._id;
+      setRedirect(`/account/bookings/${bookingId}`);
+    } catch (error) {
+      console.error("Error booking place:", error);
+    }
   }
+  
 
   if (redirect) {
+    console.log(redirect);
     return <Navigate to={redirect} />
   }
 
@@ -79,7 +110,7 @@ export default function BookingWidget({place}) {
       <button onClick={bookThisPlace} className="primary mt-4">
         Book this place
         {numberOfNights > 0 && (
-          <span> ${numberOfNights * place.price}</span>
+          <span> Rs.{numberOfNights * place.price}</span>
         )}
       </button>
     </div>

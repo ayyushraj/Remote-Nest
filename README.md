@@ -1,4 +1,4 @@
-![home](https://github.com/user-attachments/assets/f1e0061e-da5b-41af-9977-65adc66089fc)# HotelBookings
+![home](https://github.com/user-attachments/assets/f1e0061e-da5b-41af-9977-65adc66089fc)# HomeAway
 
 Welcome to the **HomeAway** project!  This project aims to provide travelers with a platform to discover and book authentic local stays that offer a deeper cultural experience. Whether you're looking for unique accommodations or a chance to immerse yourself in local traditions, HomeAway connects travelers with hosts who offer more than just a place to stay—it's an opportunity to explore and engage with the local culture on a personal level.
 

@@ -65,13 +65,13 @@ Before running this project, ensure you have the following installed:
 Here are some screenshots of the HomeAway application:
 
 ### Home Page
-![Home Page](assets/homepage.png)
+![Home Page](ss/home.png)
 
 ### Place Page
-![Place Page](assets/placepage.png)
+![Place Page](ss/placepage.png)
 
 ### Login Page
-![Login Page](assets/login.png)
+![Login Page](ss/login.png)
 
 ### Signup Page
-![Signup Page](assets/signup.png)
+![Signup Page](sss/register.png)

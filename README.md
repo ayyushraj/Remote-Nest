@@ -59,3 +59,5 @@ Before running this project, ensure you have the following installed:
     npm run dev
 5. Visit http://localhost:3000 in your browser to see the application.
 6. Ensure your backend API is running at http://localhost:4000
+
+7.

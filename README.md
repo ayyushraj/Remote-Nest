@@ -44,18 +44,18 @@ Before running this project, ensure you have the following installed:
 1. Clone this repository:
    ```bash
    git clone https://github.com/your-username/your-repository.git
-   cd your-repository```
+   cd your-repository
 2. Start backend:
    ```bash
    cd api
-   node index```
+   node index
 3. Install dependencies 
    open a new terminal
    ```bash
    cd client
-   npm install```
+   npm install
 4. Start the frontend:
     ```bash
-    npm run dev```
+    npm run dev
 5. Visit http://localhost:3000 in your browser to see the application.
 6. Ensure your backend API is running at http://localhost:4000

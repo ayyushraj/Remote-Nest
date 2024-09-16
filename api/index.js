@@ -33,7 +33,7 @@ app.use(cookieParser());
 app.use('/uploads', express.static(uploadDirectory));
 app.use(cors({
   credentials: true,
-  origin: 'http://localhost:5173', 
+  origin: 'http://localhost:5173',
 }));
 
 mongoose.set('strictQuery', true);
@@ -205,15 +205,30 @@ app.get('/api/places', async (req, res) => {
   }
 });
 
+// app.post('/api/bookings', async (req, res) => {
+//   try {
+//     const { place, user, checkIn, checkOut, name, phone, price } = req.body;
+//     const booking = await Booking.create({ place, user, checkIn, checkOut, name, phone, price });
+//     res.json(booking);
+//   } catch (err) {
+//     res.status(500).json({ error: err.message });
+//   }
+// });
+
 app.post('/api/bookings', async (req, res) => {
   try {
+    console.log("Request body:", req.body); // Log request body for debugging
     const { place, user, checkIn, checkOut, name, phone, price } = req.body;
-    const booking = await Booking.create({ place, user, checkIn, checkOut, name, phone, price });
+    
+    const booking = await BookingModel.create({ place, user, checkIn, checkOut, name, phone, price });
+    
     res.json(booking);
   } catch (err) {
+    console.error("Error creating booking:", err); // Log error details
     res.status(500).json({ error: err.message });
   }
 });
+
 
 app.get('/api/bookings', async (req, res) => {
   try {

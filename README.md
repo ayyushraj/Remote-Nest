@@ -1,4 +1,4 @@
-# HotelBookings
+![home](https://github.com/user-attachments/assets/f1e0061e-da5b-41af-9977-65adc66089fc)# HotelBookings
 
 Welcome to the **HomeAway** project!  This project aims to provide travelers with a platform to discover and book authentic local stays that offer a deeper cultural experience. Whether you're looking for unique accommodations or a chance to immerse yourself in local traditions, HomeAway connects travelers with hosts who offer more than just a place to stay—it's an opportunity to explore and engage with the local culture on a personal level.
 
@@ -65,13 +65,15 @@ Before running this project, ensure you have the following installed:
 Here are some screenshots of the HomeAway application:
 
 ### Home Page
-![Home Page](ss/home.png)
+![home](https://github.com/user-attachments/assets/d7199706-e449-481f-8ab0-7d70a9e35c20)
 
 ### Place Page
-![Place Page](ss/placepage.png)
+![placepage](https://github.com/user-attachments/assets/24129a3d-f61f-4e4f-a492-292131ed4fff)
+
 
 ### Login Page
-![Login Page](ss/login.png)
+![login](https://github.com/user-attachments/assets/10cf4cd5-0afb-4d8c-a4a8-e2f3e1b3af35)
+
 
 ### Signup Page
-![Signup Page](sss/register.png)
+![register](https://github.com/user-attachments/assets/12a7c3f2-f371-455d-befd-6c25230f4148)
